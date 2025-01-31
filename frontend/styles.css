@@ -1,0 +1,115 @@
+@font-face {
+    font-family: 'Love Letter Typewriter';
+    src: url('fonts/LoveLetter.TTF') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --lain-fg-color: #c77284;
+    --lain-bg-color: black;
+    --lain-grey: #636363;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: var(--lain-bg-color);
+    /*background: linear-gradient(to bottom, #0a0a0a, #1a1a1a, #0f0f0f);*/
+
+    transition: transform 1s ease-in-out;
+    overflow: hidden;
+}
+
+.title {
+    font-family: 'Love Letter Typewriter', monospace;
+    font-size: 30px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--lain-fg-color);
+}
+
+@keyframes flicker {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+        opacity: 1;
+    }
+    20%, 24%, 55% {
+        opacity: 0;
+    }
+}
+
+.flicker-animation {
+    animation: flicker 1s ease-in-out;
+}
+
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.sub-container {
+    padding: 5px;
+}
+
+/* css for login button */
+#login-button {
+    font-family: 'Love Letter Typewriter', monospace;
+    font-size: 30px;
+    border: none;
+    border-radius: 5px;
+    color: var(--lain-grey);
+    background-color: var(--lain-bg-color);
+}
+
+/* css for profile image */
+.profile {
+    max-height: 65vh;
+    object-fit: contain;
+}
+
+/* css for input field styling */
+.input-field {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid;
+
+    color: var(--lain-grey);
+    border-color: var(--lain-bg-color);
+    background-color: var(--lain-bg-color);
+
+    text-align: center;
+    caret-color: transparent;
+
+    border-radius: 5px;
+    font-size: 16px;
+
+    transition: border-color 0.3s ease;
+}
+
+.input-field::placeholder {
+    text-align: center;
+}
+
+.input-field:focus {
+    outline: none;
+}
+
+.input-field:focus::placeholder {
+    color: transparent;
+}
