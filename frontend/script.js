@@ -1,11 +1,12 @@
 /**********************************************************/
-/* CODE FOR FLICKER ANIMATION */
-
-// get list of elements to have flicker animation applied
-const flickerTitles = document.querySelectorAll('.title');
+/* FLICKER ANIMATION */
 
 // function to randomly decide order for flicker animation
 function triggerRandomFlicker() {
+
+    // get list of elements to have flicker animation applied
+    const flickerTitles = document.querySelectorAll('.title');
+
     flickerTitles.forEach((div) => div.classList.remove('flicker-animation'));
 
     // get random order
@@ -32,15 +33,12 @@ function triggerRandomFlicker() {
 
 }
 
-// run the function every 3s
-triggerRandomFlicker();
 /**********************************************************/
+/* ZOOM IN ON IMAGE */
 
+function zoomInOnImage() {
+    const prof = document.getElementById('profile-img');
 
-// temp code
-const btn = document.getElementById('login-button');
-const prof = document.getElementById('profile-img');
-btn.addEventListener('click', () => {
     // Get the position of the zoom target
     const targetRect = prof.getBoundingClientRect();
 
@@ -56,4 +54,108 @@ btn.addEventListener('click', () => {
     // Apply the zoom effect
     document.body.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
     document.body.style.transformOrigin = 'center center';
-});
+}
+
+/**********************************************************/
+
+/**********************************************************/
+/* DROPDOWN MENU CODE */
+
+// function to drop menu when clicked
+function dropMenu() {
+    const userText = document.getElementById('username');
+    const dropDown = document.getElementById('dropdown-menu');
+
+    // handle click on usertext
+    userText.addEventListener('click', () => {
+        dropDown.classList.toggle('active');
+    })
+
+    // handle option selection
+    dropDown.querySelectorAll('li').forEach(option => {
+        option.addEventListener('click', () => {
+            userText.value = option.textContent;
+            userText.style.textAlign = 'center';
+
+            dropDown.classList.remove('active');
+        });
+    });
+}
+
+/**********************************************************/
+
+
+
+/**********************************************************/
+/* WEB GREETER CODE */
+
+// function to load a css file
+function loadCSS(filename) {
+
+    // create a new link element
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = filename;
+    link.setAttribute('dynamic-css', 'true');
+
+    // append the link element to the head
+    document.head.appendChild(link);
+}
+
+// function to remove a css link
+function removeCSS() {
+    const existingLink = document.querySelector('link[dynamic-css]');
+    if(existingLink) {
+        existingLink.remove();
+    }
+}
+
+// function to load the lain theme
+function loadLainTheme() {
+    const leftDiv = document.getElementById('left');
+    const profileContainer = document.getElementById('profile-container');
+    const rightDiv = document.getElementById('right');
+    const loginButton = document.getElementById('login-button');
+
+    // load the lain css
+    loadCSS('css/lain.css');
+
+    // set the profile image
+    const image = document.createElement('img');
+    image.id = "profile-img";
+    image.className = "profile";
+    image.src = "../assets/lain.gif";
+    image.alt = "lain gif";
+    profileContainer.appendChild(image);    
+
+    // set the leftDiv text
+    leftDiv.children[0].innerHTML = 'Welcome';
+    leftDiv.children[1].innerHTML = 'to';
+
+    // set the rightDiv text
+    rightDiv.children[0].innerHTML = 'the';
+    rightDiv.children[1].innerHTML = 'Wired';
+
+    // configure the button
+    loginButton.innerText = 'enter the wired';
+
+    // call the title flicker function
+    triggerRandomFlicker();
+}
+
+// function to perform all the init functions
+//TODO: 
+// add web greeter code
+function initListener() {
+    // load the lain theme and set the default user
+    loadLainTheme();
+    dropMenu();
+}
+
+/**********************************************************/
+
+
+/* Driver Code */
+
+initListener();
+/*window.addEventListener('GreeterReady', initListener);*/

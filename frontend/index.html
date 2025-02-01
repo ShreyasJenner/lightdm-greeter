@@ -5,41 +5,44 @@
     <meta name="viewport" content="width=device-width,
           initial-scale=1.0">
 
-    <link rel="stylesheet" href="styles.css">
+    <!--<link rel="stylesheet" href="css/styles.css" dynamic-css="true">-->
     <title>GIF Example</title>
   </head>
   
   <body>
     <!--div for left title -->
-    <div class="title left">
-      <h1>Welcome</h1>
-      <h1>to</h1>
+    <div class="title" id="left">
+      <h1></h1>
+      <h1></h1>
     </div>
 
     <!--div for container rendering profile image, user and password fields -->
     <div class="container">
       <!--div for the profile photo -->
-      <div class="sub-container">
-        <img id="profile-img" class="profile" src="../assets/lain.gif" alt="lain gif" />
+      <div class="sub-container" id="profile-container">
       </div>
       <!--div for the username field-->
-      <div class="sub-container">
-        <input id="username" class="input-field" type="text" placeholder="Enter username">
+      <div class="sub-container" id="userpass-container">
+        <input id="username" class="input-field" type="text" value="ouroboros" readonly>
+        <ul id="dropdown-menu">
+          <li>ouroboros</li>
+          <li>leviathan</li>
+        </ul>
       </div>
       <!--div for the password field-->
       <div class="sub-container">
         <input id="password" class="input-field" type="password" placeholder="Enter password">
       </div>
       <!--div for the login button-->
-      <div class="sub-container">
-        <button id="login-button">login</button>
+      <div class="sub-container" id="login-container">
+        <button id="login-button"></button>
       </div>
     </div>
     
     <!--div for rendering right title-->
-    <div class="title right">
-      <h1>the</h1>
-      <h1>Wired</h1>
+    <div class="title" id="right">
+      <h1></h1>
+      <h1></h1>
     </div>
 
     <script src="script.js"></script>
