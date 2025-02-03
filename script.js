@@ -61,6 +61,25 @@ function zoomInOnImage() {
 /**********************************************************/
 /* DROPDOWN MENU CODE */
 
+// function to fill dropdown menu with usernames of system and display first host in username field
+function getUsernames() {
+    const usertext = document.getElementById('username');
+    const dropdown = document.getElementById('dropdown-menu');
+
+    // get user list and set username field to first user in the list
+    const userlist = lightdm.users;
+    usertext.value = userlist[0].username;
+
+    // fill dropdown menu with usernames
+    userlist.forEach((user) => {
+        // create a li item and append to the ul
+        const li = document.createElement('li');
+        li.appendChild(document.createTextNode(user.username.trim()));
+
+        dropdown.appendChild(li);
+    })
+}
+
 // function to drop menu when clicked
 function dropMenu() {
     const userText = document.getElementById('username');
@@ -82,12 +101,18 @@ function dropMenu() {
     });
 }
 
+// function to load the menu functions in the correct order
+function loadMenu() {
+    getUsernames();
+    dropMenu();
+}
+
 /**********************************************************/
 
 
 
 /**********************************************************/
-/* WEB GREETER CODE */
+/* LAIN CSS CODE */
 
 // function to load a css file
 function loadCSS(filename) {
@@ -102,6 +127,18 @@ function loadCSS(filename) {
     document.head.appendChild(link);
 }
 
+// function to check if a css file has been loaded
+// it does not check the name of the css file, only if a link element exists in the html file
+function checkCSS() {
+    const existingLink = document.querySelector('link');
+
+    if(existingLink) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 // function to remove a css link
 function removeCSS() {
     const existingLink = document.querySelector('link[dynamic-css]');
@@ -112,19 +149,25 @@ function removeCSS() {
 
 // function to load the lain theme
 function loadLainTheme() {
+    // if the lain theme has already been loaded, then don't load it again
+    if(checkCSS()) {
+        return;
+    }
+
+    // get all the elements to be modified
     const leftDiv = document.getElementById('left');
     const profileContainer = document.getElementById('profile-container');
     const rightDiv = document.getElementById('right');
     const loginButton = document.getElementById('login-button');
 
     // load the lain css
-    loadCSS('css/lain.css');
+    loadCSS('./css/lain.css');
 
     // set the profile image
     const image = document.createElement('img');
     image.id = "profile-img";
     image.className = "profile";
-    image.src = "../assets/lain.gif";
+    image.src = "./assets/lain.gif";
     image.alt = "lain gif";
     profileContainer.appendChild(image);    
 
@@ -143,19 +186,75 @@ function loadLainTheme() {
     triggerRandomFlicker();
 }
 
-// function to perform all the init functions
-//TODO: 
-// add web greeter code
-function initListener() {
-    // load the lain theme and set the default user
+/**********************************************************/
+  
+/**********************************************************/
+/* WEB GREETER CODE */
+
+// function to wait for n ms
+function wait(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+// function to sumbit username and password and authenticate
+async function authenticate(username, password) {
+    // check username and password with lightdm
+    lightdm.authenticate(username);
+    await wait(100);
+    lightdm.respond(password);
+
+    // wait and then return authentication value
+    await wait(100);
+    return lightdm.is_authenticated;
+}
+
+// function to init greeter
+async function initListener() {
+    // load the lain theme and the dropdown menu
     loadLainTheme();
-    dropMenu();
+    loadMenu();
+    
+
+    // get username, password and button element
+    const usertext = document.getElementById('username');
+    const passtext = document.getElementById('password');
+    const btn = document.getElementById('login-button');
+
+    // event listener to get login when button is clicked
+    btn.addEventListener('click', async () => {
+        const authenticated = await authenticate(usertext.value.trim(), passtext.value.trim());
+         // if password is correct, zoom in on image and start session
+        if(authenticated) {
+            zoomInOnImage();
+            await wait(1000);
+            lightdm.start_session(lightdm.sessions[0].key);
+        } else {
+            // if password is incorrect, turn the password box red
+            passtext.style.border = "2px red";
+            passtext.style.borderStyle = "solid";
+        }
+    });
+
+    // event listener to login when enter button is pressed
+    passtext.addEventListener('keyup', async (event) => {
+        if(event.key === "Enter") {
+            const authenticated = await authenticate(usertext.value.trim(), passtext.value.trim());
+            // if password is correct, zoom in on image and start session
+            if(authenticated) {
+                zoomInOnImage();
+                await wait(1000);
+                lightdm.start_session(lightdm.sessions[0].key);
+            } else {
+                // if password is incorrect, turn the password box red
+                passtext.style.border = "2px red";
+                passtext.style.borderStyle = "solid";
+            }
+        }
+    });
 }
 
 /**********************************************************/
 
 
 /* Driver Code */
-
-initListener();
-/*window.addEventListener('GreeterReady', initListener);*/
+window.addEventListener('GreeterReady', initListener);
