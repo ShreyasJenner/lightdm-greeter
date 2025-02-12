@@ -6,15 +6,24 @@
           initial-scale=1.0">
 
     <!--<link rel="stylesheet" href="css/styles.css" dynamic-css="true">-->
+    <link
+      rel="stylesheet"
+      href="../../_vendor/material-icons/css/materialdesignicons.min.css"
+      onerror="this.href='../_vendor/material-icons/css/materialdesignicons.min.css'"
+      class="style"
+    />
     <title>GIF Example</title>
   </head>
   
   <body>
     <!--div for left title -->
-    <div class="title" id="left">
-      <h1></h1>
-      <h1></h1>
+    <div class="container">
+      <div class="title" id="left">
+        <h1></h1>
+        <h1></h1>
+      </div>
     </div>
+    
 
     <!--div for container rendering profile image, user and password fields -->
     <div class="container">
@@ -38,10 +47,24 @@
     </div>
     
     <!--div for rendering right title-->
-    <div class="title" id="right">
-      <h1></h1>
-      <h1></h1>
+    <div class="container">
+      <div class="battery">
+        <i class="fa-solid fa-battery-full"></i>
+      </div>
+      <div class="title" id="right">
+        <h1></h1>
+        <h1></h1>
+      </div>
+      <div class="power-button">
+        <button id="shutdown-btn">
+          <span class="mdi mdi-power"></span>
+        </button>
+        <button id="restart-btn">
+          <span class="mdi mdi-restart"></span>
+        </button>
+      </div>
     </div>
+    
 
     <script src="script.js"></script>
   </body>

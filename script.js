@@ -112,7 +112,7 @@ function loadMenu() {
 
 
 /**********************************************************/
-/* LAIN CSS CODE */
+/* CSS CODE */
 
 // function to load a css file
 function loadCSS(filename) {
@@ -132,7 +132,7 @@ function loadCSS(filename) {
 function checkCSS() {
     const existingLink = document.querySelector('link');
 
-    if(existingLink) {
+    if(existingLink.href == "css/lain.css") {
         return true;
     } else {
         return false;
@@ -184,6 +184,21 @@ function loadLainTheme() {
 
     // call the title flicker function
     triggerRandomFlicker();
+}
+
+// function to add event listener to power buttons
+function powerbuttonHandling() {
+    // get the power buttons
+    const shutdown = document.getElementById('shutdown-btn');
+    const restart = document.getElementById('restart-btn');
+
+    shutdown.addEventListener('click', () => {
+        lightdm.shutdown();
+    });
+    
+    restart.addEventListener('click', () => {
+        lightdm.restart();
+    })
 }
 
 /**********************************************************/
@@ -251,6 +266,9 @@ async function initListener() {
             }
         }
     });
+
+    // add power button handling
+    powerbuttonHandling();
 }
 
 /**********************************************************/
