@@ -131,6 +131,9 @@ body {
 /* css for profile image */
 .profile {
     height: 30vh;
+    
+    margin-top: 17vh;
+    margin-bottom: 18vh;
     object-fit: contain;
 }
 
