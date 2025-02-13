@@ -354,5 +354,4 @@ async function initListener() {
 
 
 /* Driver Code */
-initListener();
-//window.addEventListener('GreeterReady', initListener);
+window.addEventListener('GreeterReady', initListener);
