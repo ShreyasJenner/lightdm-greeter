@@ -59,6 +59,42 @@ function zoomInOnImage() {
 /**********************************************************/
 
 /**********************************************************/
+/* RAIN ANIMATION CODE */
+
+// function to create raindrop falling animation
+function createRainDrop(rainContainer) {
+    const rainDrop = document.createElement('div');
+    rainDrop.classList.add('rain-drop');
+
+    // randomize horizontal position
+    rainDrop.style.left = `${Math.random() * 100}vw`;
+    // Randomize fall speed (0.5s to 1s)
+    rainDrop.style.animationDuration = `${0.5 + Math.random() * 0.5}s`;
+
+    // Randomize opacity for variation
+    rainDrop.style.opacity = Math.random();
+
+    // Add the raindrop to the container
+    rainContainer.appendChild(rainDrop);
+
+    // Remove the raindrop after it falls to free up memory
+    setTimeout(() => {
+        rainDrop.remove();
+    }, 2000); // Adjust timeout based on animation duration
+}
+
+// function to create rain animation
+function createRain() {
+    const rainContainer = document.querySelector('body');
+
+    setInterval(createRainDrop, 20, rainContainer);
+}
+
+
+/**********************************************************/
+
+
+/**********************************************************/
 /* DROPDOWN MENU CODE */
 
 // function to fill dropdown menu with usernames of system and display first host in username field
@@ -186,6 +222,45 @@ function loadLainTheme() {
     triggerRandomFlicker();
 }
 
+// function to load ender lily theme
+function loadLilyTheme() {
+    // if a css file has already been loaded, don't load it again
+    if(checkCSS()) {
+        return;
+    }
+
+     // get all the elements to be modified
+     const leftDiv = document.getElementById('left');
+     const profileContainer = document.getElementById('profile-container');
+     const rightDiv = document.getElementById('right');
+     const loginButton = document.getElementById('login-button');
+
+     // load the ender lilies css
+     loadCSS("./css/ender_lilies.css");
+
+     // set the profile image
+    const image = document.createElement('img');
+    image.id = "profile-img";
+    image.className = "profile";
+    image.src = "./assets/ender_lilies.png";
+    image.alt = "lily image";
+    profileContainer.appendChild(image);    
+
+    // set the leftDiv text
+    leftDiv.children[0].innerHTML = 'Ender';
+    leftDiv.children[1].innerHTML = 'Quietus of';
+
+    // set the rightDiv text
+    rightDiv.children[0].innerHTML = 'Lilies';
+    rightDiv.children[1].innerHTML = 'the Knights';
+
+    // configure the button
+    loginButton.innerText = 'Purify';
+
+    // add the rain animation
+    createRain();
+}
+
 // function to add event listener to power buttons
 function powerbuttonHandling() {
     // get the power buttons
@@ -225,8 +300,12 @@ async function authenticate(username, password) {
 
 // function to init greeter
 async function initListener() {
-    // load the lain theme and the dropdown menu
-    loadLainTheme();
+    // load a random theme and the dropdown menu
+    if(Math.random() > 0.5) {
+        loadLainTheme();
+    } else {
+        loadLilyTheme();
+    }
     loadMenu();
     
 
@@ -275,4 +354,5 @@ async function initListener() {
 
 
 /* Driver Code */
-window.addEventListener('GreeterReady', initListener);
+initListener();
+//window.addEventListener('GreeterReady', initListener);
