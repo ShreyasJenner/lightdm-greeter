@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,
+          initial-scale=1.0">
+
+    <!--<link rel="stylesheet" href="css/styles.css" dynamic-css="true">-->
+    <link
+      rel="stylesheet"
+      href="../../../_vendor/material-icons/css/materialdesignicons.min.css"
+      onerror="this.href='../_vendor/material-icons/css/materialdesignicons.min.css'"
+      class="style"
+    />
+    <link
+    rel="stylesheet"
+    href="../css/lain.css"
+    class="style"
+    />
+    <title>Serial Experiments Lain</title>
+  </head>
+  
+  <body>
+    <!--div for left title -->
+    <div class="container">
+      <div class="title" id="left">
+        <h1></h1>
+        <h1></h1>
+      </div>
+    </div>
+    
+
+    <!--div for container rendering profile image, user and password fields -->
+    <div class="container">
+      <!--div for the profile photo -->
+      <div class="sub-container" id="profile-container">
+      </div>
+      <!--div for the username field-->
+      <div class="sub-container">
+        <input type="text" id="username" class="input-field" placeholder="Enter username" autofocus>
+      </div>
+      <!--
+      <div class="sub-container" id="userpass-container">
+        <input id="username" class="input-field" type="text" value="" readonly>
+        <ul id="dropdown-menu">
+        </ul>
+      </div>
+      -->
+      <!--div for the password field-->
+      <div class="sub-container">
+        <input id="password" class="input-field" type="password" placeholder="Enter password">
+      </div>
+      <!--div for the login button-->
+      <div class="sub-container" id="login-container">
+        <button id="login-button"></button>
+      </div>
+    </div>
+    
+    <!--div for rendering right title-->
+    <div class="container">
+      <div class="battery">
+        <i class="fa-solid fa-battery-full"></i>
+      </div>
+      <div class="title" id="right">
+        <h1></h1>
+        <h1></h1>
+      </div>
+      <div class="power-button">
+        <button id="shutdown-btn">
+          <span class="mdi mdi-power"></span>
+        </button>
+        <button id="restart-btn">
+          <span class="mdi mdi-restart"></span>
+        </button>
+      </div>
+    </div>
+    
+
+    <script src="../js/lain.js"></script>
+  </body>
+</html>

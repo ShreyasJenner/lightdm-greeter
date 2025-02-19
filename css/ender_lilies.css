@@ -45,7 +45,7 @@ body {
     position: absolute;
     bottom: 100%;
     width: 2px;
-    height: 20px;
+    height: 25px;
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.7));
     animation: fall linear infinite;
 }

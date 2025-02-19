@@ -12,7 +12,12 @@
       onerror="this.href='../_vendor/material-icons/css/materialdesignicons.min.css'"
       class="style"
     />
-    <title>GIF Example</title>
+    <link
+    rel="stylesheet"
+    href="../css/ender_lilies.css"
+    class="style"
+    />
+    <title>Ender Lily</title>
   </head>
   
   <body>
@@ -31,14 +36,19 @@
       <div class="sub-container" id="profile-container">
       </div>
       <!--div for the username field-->
+      <div class="sub-container">
+        <input type="text" id="username" class="input-field" placeholder="Enter username" autofocus>
+      </div>
+      <!--
       <div class="sub-container" id="userpass-container">
         <input id="username" class="input-field" type="text" value="" readonly>
         <ul id="dropdown-menu">
         </ul>
       </div>
+      -->
       <!--div for the password field-->
       <div class="sub-container">
-        <input id="password" class="input-field" type="password" placeholder="Enter password" autofocus>
+        <input id="password" class="input-field" type="password" placeholder="Enter password">
       </div>
       <!--div for the login button-->
       <div class="sub-container" id="login-container">
@@ -66,6 +76,6 @@
     </div>
     
 
-    <script src="script.js"></script>
+    <script src="../js/lily.js"></script>
   </body>
 </html>
