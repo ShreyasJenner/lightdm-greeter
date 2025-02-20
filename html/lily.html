@@ -2,80 +2,32 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,
-          initial-scale=1.0">
-
-    <!--<link rel="stylesheet" href="css/styles.css" dynamic-css="true">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link
       rel="stylesheet"
       href="../../_vendor/material-icons/css/materialdesignicons.min.css"
       onerror="this.href='../_vendor/material-icons/css/materialdesignicons.min.css'"
-      class="style"
     />
-    <link
-    rel="stylesheet"
-    href="../css/ender_lilies.css"
-    class="style"
-    />
+    <link rel="stylesheet" href="../css/lily.css" />
     <title>Ender Lily</title>
   </head>
   
   <body>
-    <!--div for left title -->
-    <div class="container">
-      <div class="title" id="left">
-        <h1></h1>
-        <h1></h1>
-      </div>
-    </div>
+    <video id="background-video">
+      <source src="../assets/cropped_ulv.mp4" type="video/mp4">
+    </video>
     
+    <div class="content">
+      <div class="titles">
+        <h1>Ender Lilies</h1>
+        <h2>Quietus of the Knights</h2>
+      </div>
 
-    <!--div for container rendering profile image, user and password fields -->
-    <div class="container">
-      <!--div for the profile photo -->
-      <div class="sub-container" id="profile-container">
-      </div>
-      <!--div for the username field-->
-      <div class="sub-container">
-        <input type="text" id="username" class="input-field" placeholder="Enter username" autofocus>
-      </div>
-      <!--
-      <div class="sub-container" id="userpass-container">
-        <input id="username" class="input-field" type="text" value="" readonly>
-        <ul id="dropdown-menu">
-        </ul>
-      </div>
-      -->
-      <!--div for the password field-->
-      <div class="sub-container">
-        <input id="password" class="input-field" type="password" placeholder="Enter password">
-      </div>
-      <!--div for the login button-->
-      <div class="sub-container" id="login-container">
-        <button id="login-button"></button>
-      </div>
+      <input type="text" id="username" class="input-field" placeholder="Enter username" autofocus>
+      <input type="password" id="password" class="input-field" placeholder="Enter password">
     </div>
+    <button id="login-button">Purify</button>
     
-    <!--div for rendering right title-->
-    <div class="container">
-      <div class="battery">
-        <i class="fa-solid fa-battery-full"></i>
-      </div>
-      <div class="title" id="right">
-        <h1></h1>
-        <h1></h1>
-      </div>
-      <div class="power-button">
-        <button id="shutdown-btn">
-          <span class="mdi mdi-power"></span>
-        </button>
-        <button id="restart-btn">
-          <span class="mdi mdi-restart"></span>
-        </button>
-      </div>
-    </div>
-    
-
     <script src="../js/lily.js"></script>
   </body>
 </html>

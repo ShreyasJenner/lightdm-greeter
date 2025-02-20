@@ -1,74 +1,90 @@
-/**********************************************************/
-/* RAIN ANIMATION CODE */
+function createSplatter(x, y, rainContainer) {
+    for (let i = 0; i < 3 + Math.random() * 3; i++) { // 3 to 6 droplets
+        const splatter = document.createElement('div');
+        splatter.classList.add('splatter');
+        
+        // Randomize position within a small radius
+        const offsetX = (Math.random() - 0.5) * 10; // Spread within 10px
+        const offsetY = (Math.random() - 0.5) * 5;
 
-// function to create raindrop falling animation
+        splatter.style.left = `${x + offsetX}px`;
+        splatter.style.bottom = `${y + offsetY}px`;
+
+        rainContainer.appendChild(splatter);
+
+        // Remove splatter after animation
+        setTimeout(() => {
+            splatter.remove();
+        }, 400);
+    }
+}
+
 function createRainDrop(rainContainer) {
     const rainDrop = document.createElement('div');
     rainDrop.classList.add('rain-drop');
 
-    // randomize horizontal position
-    rainDrop.style.left = `${Math.random() * 100}vw`;
-    // Randomize fall speed (0.5s to 1s)
-    rainDrop.style.animationDuration = `${0.5 + Math.random() * 0.5}s`;
+    const leftPos = Math.random() * window.innerWidth;
+    rainDrop.style.left = `${leftPos}px`;
 
-    // Randomize opacity for variation
+    const fallDuration = 0.5 + Math.random() * 0.5;
+    rainDrop.style.animationDuration = `${fallDuration}s`;
+
     rainDrop.style.opacity = Math.random();
 
-    // Add the raindrop to the container
     rainContainer.appendChild(rainDrop);
 
-    // Remove the raindrop after it falls to free up memory
     setTimeout(() => {
+        createSplatter(leftPos, 80, rainContainer);
         rainDrop.remove();
-    }, 2000); // Adjust timeout based on animation duration
+    }, fallDuration * 1000);
 }
 
-// function to create rain animation
 function createRain() {
     const rainContainer = document.querySelector('body');
-
     setInterval(createRainDrop, 20, rainContainer);
 }
 
 
-/**********************************************************/
+// function to start video
+function startVideo() {
+    var video = document.querySelector('video');
+    video.play();
+}
 
+// function to wait for n ms
+function wait(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
+// function to sumbit username and password and authenticate
+async function authenticate(username, password) {
+    // check username and password with lightdm
+    lightdm.authenticate(username);
+    await wait(100);
+    lightdm.respond(password);
 
-// function to load ender lily theme
-function loadLilyTheme() {
+    // wait and then return authentication value
+    await wait(100);
+    return lightdm.is_authenticated;
+}
 
-     // get all the elements to be modified
-     const leftDiv = document.getElementById('left');
-     const profileContainer = document.getElementById('profile-container');
-     const rightDiv = document.getElementById('right');
-     const loginButton = document.getElementById('login-button');
+// function to add event listener to power buttons
+function powerbuttonHandling() {
+    // get the power buttons
+    const shutdown = document.getElementById('shutdown-btn');
+    const restart = document.getElementById('restart-btn');
 
-
-     // set the profile image
-    const image = document.createElement('img');
-    image.id = "profile-img";
-    image.className = "profile";
-    image.src = "../assets/ender_lilies.png";
-    image.alt = "lily image";
-    profileContainer.appendChild(image);    
-
-    // set the leftDiv text
-    leftDiv.children[0].innerHTML = 'Ender Lilies';
-    leftDiv.children[1].innerHTML = 'Quietus of the Knights';
-
-    // configure the button
-    loginButton.innerText = 'Purify';
-
-    // add the rain animation
-    createRain();
+    shutdown.addEventListener('click', () => {
+        lightdm.shutdown();
+    });
+    
+    restart.addEventListener('click', () => {
+        lightdm.restart();
+    })
 }
 
 // function to init greeter
 async function initListener() {
-    // load a random theme
-    loadLilyTheme()
-    
     // get username, password and button element
     const usertext = document.getElementById('username');
     const passtext = document.getElementById('password');
@@ -77,10 +93,10 @@ async function initListener() {
     // event listener to get login when button is clicked
     btn.addEventListener('click', async () => {
         const authenticated = await authenticate(usertext.value.trim(), passtext.value.trim());
-         // if password is correct, zoom in on image and start session
+         // if password is correct, start video and start session
         if(authenticated) {
-            zoomInOnImage();
-            await wait(1000);
+            startVideo();
+            await wait(3000);
             lightdm.start_session(lightdm.sessions[0].key);
         } else {
             // if password is incorrect, turn the password box red
@@ -95,8 +111,8 @@ async function initListener() {
             const authenticated = await authenticate(usertext.value.trim(), passtext.value.trim());
             // if password is correct, zoom in on image and start session
             if(authenticated) {
-                zoomInOnImage();
-                await wait(1000);
+                startVideo();
+                await wait(3000);
                 lightdm.start_session(lightdm.sessions[0].key);
             } else {
                 // if password is incorrect, turn the password box red
@@ -105,6 +121,9 @@ async function initListener() {
             }
         }
     });
+
+    // add rain
+    createRain();
 
     // add power button handling
     powerbuttonHandling();
