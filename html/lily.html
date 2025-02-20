@@ -5,28 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link
       rel="stylesheet"
-      href="../../_vendor/material-icons/css/materialdesignicons.min.css"
+      href="../../../_vendor/material-icons/css/materialdesignicons.min.css"
       onerror="this.href='../_vendor/material-icons/css/materialdesignicons.min.css'"
+      class="style"
     />
     <link rel="stylesheet" href="../css/lily.css" />
     <title>Ender Lily</title>
   </head>
   
   <body>
-    <video id="background-video">
-      <source src="../assets/cropped_ulv.mp4" type="video/mp4">
-    </video>
-    
-    <div class="content">
-      <div class="titles">
-        <h1>Ender Lilies</h1>
-        <h2>Quietus of the Knights</h2>
-      </div>
 
-      <input type="text" id="username" class="input-field" placeholder="Enter username" autofocus>
-      <input type="password" id="password" class="input-field" placeholder="Enter password">
+    <div>
+      <video id="background-video">
+        <source src="../assets/cropped_ulv.mp4" type="video/mp4">
+      </video>
+      
+      <div class="content">
+        <div class="titles">
+          <h1>Ender Lilies</h1>
+          <h2>Quietus of the Knights</h2>
+        </div>
+  
+        <input type="text" id="username" class="input-field" placeholder="Enter username" autofocus>
+        <input type="password" id="password" class="input-field" placeholder="Enter password">
+      </div>
+      <button id="login-button">Purify</button>
+
+
+      <div class="power-button">
+        <div class="shutdown-button">
+          <button id="shutdown-btn">
+            <span class="mdi mdi-power"></span>
+          </button>
+        </div>
+  
+        <div class="restart-button">
+          <button id="restart-btn">
+            <span class="mdi mdi-restart"></span>
+          </button>
+        </div>
+      </div>
     </div>
-    <button id="login-button">Purify</button>
+    
     
     <script src="../js/lily.js"></script>
   </body>
