@@ -130,4 +130,4 @@ async function initListener() {
 }
 
 /* Driver Code */
-window.addEventListener('GreeterReady', initListener);
+initListener();
