@@ -1,6 +1,3 @@
-/**********************************************************/
-/* FLICKER ANIMATION */
-
 // function to randomly decide order for flicker animation
 function triggerRandomFlicker() {
 
@@ -33,9 +30,7 @@ function triggerRandomFlicker() {
 
 }
 
-/**********************************************************/
-/* ZOOM IN ON IMAGE */
-
+// function to zoom in on the lain image
 function zoomInOnImage() {
     const prof = document.getElementById('profile-img');
 
@@ -55,47 +50,6 @@ function zoomInOnImage() {
     document.body.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
     document.body.style.transformOrigin = 'center center';
 }
-
-/**********************************************************/
-
-/**********************************************************/
-/* RAIN ANIMATION CODE */
-
-// function to create raindrop falling animation
-function createRainDrop(rainContainer) {
-    const rainDrop = document.createElement('div');
-    rainDrop.classList.add('rain-drop');
-
-    // randomize horizontal position
-    rainDrop.style.left = `${Math.random() * 100}vw`;
-    // Randomize fall speed (0.5s to 1s)
-    rainDrop.style.animationDuration = `${0.5 + Math.random() * 0.5}s`;
-
-    // Randomize opacity for variation
-    rainDrop.style.opacity = Math.random();
-
-    // Add the raindrop to the container
-    rainContainer.appendChild(rainDrop);
-
-    // Remove the raindrop after it falls to free up memory
-    setTimeout(() => {
-        rainDrop.remove();
-    }, 2000); // Adjust timeout based on animation duration
-}
-
-// function to create rain animation
-function createRain() {
-    const rainContainer = document.querySelector('body');
-
-    setInterval(createRainDrop, 20, rainContainer);
-}
-
-
-/**********************************************************/
-
-
-/**********************************************************/
-/* DROPDOWN MENU CODE */
 
 // function to fill dropdown menu with usernames of system and display first host in username field
 function getUsernames() {
@@ -143,124 +97,6 @@ function loadMenu() {
     dropMenu();
 }
 
-/**********************************************************/
-
-
-
-/**********************************************************/
-/* CSS CODE */
-
-// function to load a css file
-function loadCSS(filename) {
-
-    // create a new link element
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = filename;
-    link.setAttribute('dynamic-css', 'true');
-
-    // append the link element to the head
-    document.head.appendChild(link);
-}
-
-// function to check if a css file has been loaded
-// it does not check the name of the css file, only if a link element exists in the html file
-function checkCSS() {
-    const existingLink = document.querySelector('link');
-
-    if(existingLink.href == "css/lain.css") {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-// function to remove a css link
-function removeCSS() {
-    const existingLink = document.querySelector('link[dynamic-css]');
-    if(existingLink) {
-        existingLink.remove();
-    }
-}
-
-// function to load the lain theme
-function loadLainTheme() {
-    // if the lain theme has already been loaded, then don't load it again
-    if(checkCSS()) {
-        return;
-    }
-
-    // get all the elements to be modified
-    const leftDiv = document.getElementById('left');
-    const profileContainer = document.getElementById('profile-container');
-    const rightDiv = document.getElementById('right');
-    const loginButton = document.getElementById('login-button');
-
-    // load the lain css
-    loadCSS('./css/lain.css');
-
-    // set the profile image
-    const image = document.createElement('img');
-    image.id = "profile-img";
-    image.className = "profile";
-    image.src = "./assets/lain.gif";
-    image.alt = "lain gif";
-    profileContainer.appendChild(image);    
-
-    // set the leftDiv text
-    leftDiv.children[0].innerHTML = 'Welcome';
-    leftDiv.children[1].innerHTML = 'to';
-
-    // set the rightDiv text
-    rightDiv.children[0].innerHTML = 'the';
-    rightDiv.children[1].innerHTML = 'Wired';
-
-    // configure the button
-    loginButton.innerText = 'enter the wired';
-
-    // call the title flicker function
-    triggerRandomFlicker();
-}
-
-// function to load ender lily theme
-function loadLilyTheme() {
-    // if a css file has already been loaded, don't load it again
-    if(checkCSS()) {
-        return;
-    }
-
-     // get all the elements to be modified
-     const leftDiv = document.getElementById('left');
-     const profileContainer = document.getElementById('profile-container');
-     const rightDiv = document.getElementById('right');
-     const loginButton = document.getElementById('login-button');
-
-     // load the ender lilies css
-     loadCSS("./css/ender_lilies.css");
-
-     // set the profile image
-    const image = document.createElement('img');
-    image.id = "profile-img";
-    image.className = "profile";
-    image.src = "./assets/ender_lilies.png";
-    image.alt = "lily image";
-    profileContainer.appendChild(image);    
-
-    // set the leftDiv text
-    leftDiv.children[0].innerHTML = 'Ender';
-    leftDiv.children[1].innerHTML = 'Quietus of';
-
-    // set the rightDiv text
-    rightDiv.children[0].innerHTML = 'Lilies';
-    rightDiv.children[1].innerHTML = 'the Knights';
-
-    // configure the button
-    loginButton.innerText = 'Purify';
-
-    // add the rain animation
-    createRain();
-}
-
 // function to add event listener to power buttons
 function powerbuttonHandling() {
     // get the power buttons
@@ -276,8 +112,6 @@ function powerbuttonHandling() {
     })
 }
 
-/**********************************************************/
-  
 /**********************************************************/
 /* WEB GREETER CODE */
 
@@ -300,15 +134,9 @@ async function authenticate(username, password) {
 
 // function to init greeter
 async function initListener() {
-    // load a random theme and the dropdown menu
-    if(Math.random() > 0.5) {
-        loadLainTheme();
-    } else {
-        loadLilyTheme();
-    }
-    loadMenu();
+    // start the random flickers
+    triggerRandomFlicker()
     
-
     // get username, password and button element
     const usertext = document.getElementById('username');
     const passtext = document.getElementById('password');
@@ -350,8 +178,5 @@ async function initListener() {
     powerbuttonHandling();
 }
 
-/**********************************************************/
-
-
 /* Driver Code */
-window.addEventListener('GreeterReady', initListener);
+initListener();
