@@ -97,72 +97,6 @@ function loadMenu() {
     dropMenu();
 }
 
-// function to load a css file
-function loadCSS(filename) {
-
-    // create a new link element
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = filename;
-    link.setAttribute('dynamic-css', 'true');
-
-    // append the link element to the head
-    document.head.appendChild(link);
-}
-
-// function to check if a css file has been loaded
-// it does not check the name of the css file, only if a link element exists in the html file
-function checkCSS() {
-    const existingLink = document.querySelector('link');
-
-    if(existingLink.href == "css/lain.css") {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-// function to remove a css link
-function removeCSS() {
-    const existingLink = document.querySelector('link[dynamic-css]');
-    if(existingLink) {
-        existingLink.remove();
-    }
-}
-
-// function to load the lain theme
-function loadLainTheme() {
-
-    // get all the elements to be modified
-    const leftDiv = document.getElementById('left');
-    const profileContainer = document.getElementById('profile-container');
-    const rightDiv = document.getElementById('right');
-    const loginButton = document.getElementById('login-button');
-
-    // set the profile image
-    const image = document.createElement('img');
-    image.id = "profile-img";
-    image.className = "profile";
-    image.src = "../assets/lain.gif";
-    image.alt = "lain gif";
-    profileContainer.appendChild(image);    
-
-    // set the leftDiv text
-    leftDiv.children[0].innerHTML = 'Welcome';
-    leftDiv.children[1].innerHTML = 'to';
-
-    // set the rightDiv text
-    rightDiv.children[0].innerHTML = 'the';
-    rightDiv.children[1].innerHTML = 'Wired';
-
-    // configure the button
-    loginButton.innerText = 'enter the wired';
-
-    // call the title flicker function
-    triggerRandomFlicker();
-}
-
-
 // function to add event listener to power buttons
 function powerbuttonHandling() {
     // get the power buttons
@@ -178,8 +112,6 @@ function powerbuttonHandling() {
     })
 }
 
-/**********************************************************/
-  
 /**********************************************************/
 /* WEB GREETER CODE */
 
@@ -202,8 +134,8 @@ async function authenticate(username, password) {
 
 // function to init greeter
 async function initListener() {
-    // load a random theme
-    loadLainTheme()
+    // start the random flickers
+    triggerRandomFlicker()
     
     // get username, password and button element
     const usertext = document.getElementById('username');
@@ -247,5 +179,4 @@ async function initListener() {
 }
 
 /* Driver Code */
-initListener();
-//window.addEventListener('GreeterReady', initListener);
+window.addEventListener('GreeterReady', initListener);
