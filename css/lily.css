@@ -75,12 +75,21 @@ body {
 .input-field::placeholder {
     color: var(--lily-fg-color);
     opacity: 0.7;
+    text-align: center;
+}
+
+.input-field:focus {
+    outline: none;
+}
+
+.input-field:focus::placeholder {
+    color: transparent;
 }
 
 #login-button {
     position: absolute;
-    bottom: 250px;
-    left: 800px;
+    bottom: 240px;
+    left: 570px;
 
     border: none;
     color: var(--lily-fg-color);
