@@ -1,2 +1,2 @@
 # lightdm-greeter
-A custom greeter for lightdm
+A custom web greeter theme for lightdm
