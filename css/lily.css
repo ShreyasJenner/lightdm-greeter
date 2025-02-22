@@ -1,6 +1,8 @@
 @font-face {
     font-family: 'Classic Roman Std';
     src: url('fonts/Classic\ Roman\ Std\ Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
 }
 
 :root {
@@ -11,13 +13,6 @@ body {
     margin: 0;
     padding: 0;
     height: 100vh;
-    width: 100vw;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    font-family: 'Classic Roman Std', sans-serif;
     overflow: hidden;
 }
 
@@ -25,18 +20,21 @@ body {
     position: fixed;
     top: 0;
     left: 0;
+
     width: 100vw;
     height: 100vh;
     object-fit: cover;
     z-index: -1;
 }
 
+/* Content stays in the top-left */
 .content {
     position: absolute;
-    top: 10%;
+    top: 5%;
     left: 5%;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 10px;
     text-align: left;
 }
@@ -44,29 +42,26 @@ body {
 .titles h1 {
     margin: 0;
     color: var(--lily-fg-color);
-
+    font-family: 'Classic Roman Std', sans-serif;
     font-size: 50px;
 }
 
 .titles h2 {
-    margin: 0;
-    margin-top: -10px;
-    margin-bottom: 40px;
+    margin: 5px 0 20px;
     color: var(--lily-fg-color);
-
+    font-family: 'Classic Roman Std', sans-serif;
     font-size: 20px;
 }
 
 .input-field {
-    margin-top: 20px;
-    margin-left: -40px;
     padding: 10px;
     background: transparent;
     color: var(--lily-fg-color);
-
     font-size: 20px;
-    text-align: center;
 
+    text-align: center;
+    align-items: center;
+    
     border: none;
     border-radius: 5px;
     outline: none;
@@ -86,21 +81,40 @@ body {
     color: transparent;
 }
 
+/* Login button centered in the middle of the screen */
 #login-button {
     position: absolute;
-    bottom: 240px;
-    left: 570px;
+    top: 60%;
+    left: 45%;
+    transform: translate(-50%, -50%);
 
     border: none;
     color: var(--lily-fg-color);
-    
     background-color: transparent;
     font-family: 'Classic Roman Std', sans-serif;
     font-size: 35px;
+    cursor: pointer;
 }
 
 #login-button:hover {
     opacity: 0.8;
+}
+
+/* Power buttons remain at the bottom right */
+.power-button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.power-button button {
+    font-size: 50px;
+    color: var(--lily-fg-color);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
 }
 
 /* animation for rain */
@@ -155,37 +169,4 @@ body {
         transform: scale(2) translateY(-5px);
         opacity: 0;
     }
-}
-
-
-.power-button {
-    height: 10%;
-
-    display: flex;
-    flex-direction: row;
-
-    gap: 30px;
-}
-
-.power-button button {
-    font-size: 50px;
-
-    color: var(--lily-fg-color);
-    background-color: transparent;
-    
-    border: none;
-}
-
-.shutdown-button {
-    position: absolute;
-
-    bottom: 10px;
-    right: 95px
-}
-
-.restart-button {
-    position: absolute;
-
-    bottom: 10px;
-    right: 15px;
 }

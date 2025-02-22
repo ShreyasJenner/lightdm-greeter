@@ -112,7 +112,7 @@ async function initListener() {
             // if password is correct, zoom in on image and start session
             if(authenticated) {
                 startVideo();
-                await wait(3500);
+                await wait(2500);
                 lightdm.start_session(lightdm.sessions[0].key);
             } else {
                 // if password is incorrect, turn the password box red
