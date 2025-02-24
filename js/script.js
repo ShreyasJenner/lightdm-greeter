@@ -1,4 +1,4 @@
-window.addEventListener('GreeterReady', function () {
+window.addEventListener('DOMContentLoaded', function () {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", (Math.random() > 0.5) ? "../html/lily.html" : "../html/lain.html", true);
     xhr.onreadystatechange = function () {

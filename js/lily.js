@@ -51,6 +51,23 @@ function startVideo() {
     video.play();
 }
 
+// function to start post authentication animation
+function startAnimation(usertext, passtext, loginbtn) {
+    // hide the input elements
+    usertext.style.display = 'None';
+    passtext.style.display = 'None';
+    loginbtn.style.display = 'None';
+
+    // hide the titles
+    const header1 = document.querySelector('h1');
+    const header2 = document.querySelector('h2');
+    header1.style.display = 'None';
+    header2.style.display = 'None';
+
+    // start the video 
+    startVideo();
+}
+
 // function to wait for n ms
 function wait(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -95,7 +112,7 @@ async function initListener() {
         const authenticated = await authenticate(usertext.value.trim(), passtext.value.trim());
          // if password is correct, start video and start session
         if(authenticated) {
-            startVideo();
+            startAnimation(usertext, passtext, btn);
             await wait(3500);
             lightdm.start_session(lightdm.sessions[0].key);
         } else {
@@ -111,7 +128,7 @@ async function initListener() {
             const authenticated = await authenticate(usertext.value.trim(), passtext.value.trim());
             // if password is correct, zoom in on image and start session
             if(authenticated) {
-                startVideo();
+                startAnimation(usertext, passtext, btn);
                 await wait(2500);
                 lightdm.start_session(lightdm.sessions[0].key);
             } else {
