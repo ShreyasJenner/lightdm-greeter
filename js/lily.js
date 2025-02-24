@@ -34,7 +34,7 @@ function createRainDrop(rainContainer) {
     rainContainer.appendChild(rainDrop);
 
     setTimeout(() => {
-        createSplatter(leftPos, 120, rainContainer);
+        createSplatter(leftPos, 162, rainContainer);
         rainDrop.remove();
     }, fallDuration * 1000);
 }
