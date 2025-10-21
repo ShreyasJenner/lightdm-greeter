@@ -8,3 +8,4 @@ A custom web-greeter theme for lightdm
 ## Theme List
 - Lain
 - Ender Lilies
+- Hollow Knight

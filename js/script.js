@@ -2,7 +2,11 @@ window.addEventListener('GreeterReady', function () {
     var xhr = new XMLHttpRequest();
     const date = new Date().getDate();
 
-    const theme_list = ["../html/lily.html", "../html/lain.html"];
+    const theme_list = [
+        "../html/lain.html",
+        "../html/lily.html", 
+        "../html/hk.html", 
+    ];
     const theme_len = theme_list.length;
 
     xhr.open("GET", theme_list[date%theme_len], true);

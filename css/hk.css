@@ -1,0 +1,113 @@
+@font-face {
+    font-family: 'Trajan Pro';
+    src: url('fonts/trajan-pro/TrajanPro-Bold.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --hk-fg-color: #FFFFFF;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+    object-fit: contain;
+
+    z-index: -1;
+}
+
+/* Content stays in the top-left */
+.content {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    text-align: left;
+}
+
+.titles h1 {
+    margin: 0;
+    color: var(--hk-fg-color);
+    font-family: 'Trajan Pro', sans-serif;
+    font-size: 35px;
+    font-weight: normal;
+}
+
+.input-field {
+    padding: 10px;
+    background: transparent;
+    color: var(--hk-fg-color);
+    font-size: 20px;
+
+    text-align: center;
+    align-items: center;
+    
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+
+.input-field::placeholder {
+    color: var(--hk-fg-color);
+    opacity: 0.7;
+    text-align: center;
+}
+
+.input-field:focus {
+    outline: none;
+}
+
+.input-field:focus::placeholder {
+    color: transparent;
+}
+
+/* Login button centered in the middle of the screen */
+#login-button {
+    position: absolute;
+    top: 47%;
+    left: 51%;
+    transform: translate(-50%, -50%);
+
+    border: none;
+    color: var(--hk-fg-color);
+    background-color: transparent;
+    font-family: 'Trajan Pro', sans-serif;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+#login-button:hover {
+    opacity: 0.8;
+}
+
+/* Power buttons remain at the bottom right */
+.power-button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.power-button button {
+    font-size: 50px;
+    color: var(--hk-fg-color);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
