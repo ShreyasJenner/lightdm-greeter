@@ -8,8 +8,3 @@ A custom web-greeter theme for lightdm
 ## Theme List
 - Lain
 - Ender Lilies
-
-## Warning:
-- /etc/mkinitcpio.conf should have the graphics driver preloaded
-- In my case, I had to preload all nvidia modules otherwise a black screen with only cursor would show up
-

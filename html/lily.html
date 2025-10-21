@@ -16,8 +16,9 @@
   <body>
 
     <div>
-      <video id="background-video">
-        <source src="../assets/4k_cut_ulv.mp4#t=npt:0,3" type="video/mp4">
+	    <!-- <video id="background-video" autoplay muted playsinline preload="auto"> -->
+      <video id="background-video" preload="true">
+        <source src="../assets/Silva_bossfight.mp4#t=npt:0,4" type="video/mp4">
       </video>
       
       <div class="content">
@@ -29,7 +30,7 @@
         <input type="text" id="username" class="input-field" placeholder="Enter username" autofocus>
         <input type="password" id="password" class="input-field" placeholder="Enter password">
       </div>
-      <button id="login-button">Purify</button>
+      <p id="login-button">Purify</p>
 
 
       <div class="power-button">

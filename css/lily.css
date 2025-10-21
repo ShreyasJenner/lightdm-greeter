@@ -23,8 +23,7 @@ body {
 
     width: 100vw;
     height: 100vh;
-    object-fit: cover;
-    transform: scale(1.1);
+    object-fit: contain;
 
     z-index: -1;
 }
@@ -88,15 +87,15 @@ body {
 /* Login button centered in the middle of the screen */
 #login-button {
     position: absolute;
-    top: 60%;
-    left: 45%;
+    top: 51%;
+    left: 52%;
     transform: translate(-50%, -50%);
 
     border: none;
     color: var(--lily-fg-color);
     background-color: transparent;
     font-family: 'Classic Roman Std', sans-serif;
-    font-size: 35px;
+    font-size: 40px;
     cursor: pointer;
 }
 

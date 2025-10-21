@@ -1,6 +1,11 @@
 window.addEventListener('GreeterReady', function () {
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", (Math.random() > 0.5) ? "../html/lily.html" : "../html/lain.html", true);
+    const date = new Date().getDate();
+
+    const theme_list = ["../html/lily.html", "../html/lain.html"];
+    const theme_len = theme_list.length;
+
+    xhr.open("GET", theme_list[date%theme_len], true);
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             document.documentElement.innerHTML = xhr.responseText;

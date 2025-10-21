@@ -165,7 +165,7 @@ async function initListener() {
             if(authenticated) {
                 zoomInOnImage();
                 await wait(1000);
-                lightdm.start_session(lightdm.sessions[0].key);
+                lightdm.start_session("xinitrc");
             } else {
                 // if password is incorrect, turn the password box red
                 passtext.style.border = "2px red";
