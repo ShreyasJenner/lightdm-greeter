@@ -8,7 +8,7 @@ function startVideo() {
 }
 
 // function to start post authentication animation
-function startAnimation(usertext, passtext) {
+function startAnimation() {
     // hide the titles
     document.getElementsByClassName('content')[0].style.display = 'none';
 
@@ -19,18 +19,7 @@ function startAnimation(usertext, passtext) {
     // start the video 
     startVideo();
 }
-// function to start post authentication animation
-function startAnimation(usertext, passtext) {
-    // hide the titles
-    document.getElementsByClassName('content')[0].style.display = 'none'
 
-    // hide the buttons
-    const btns = document.querySelectorAll('button');
-    btns.forEach((btn) => {btn.style.display = 'None'});
-
-    // start the video 
-    startVideo();
-}
 // function to add event listener to power buttons
 function powerbuttonHandling() {
     // get the power buttons
@@ -79,7 +68,7 @@ async function initListener() {
         const authenticated = await authenticate(usertext.value.trim(), passtext.value.trim());
          // if password is correct, zoom in on image and start session
         if(authenticated) {
-            startAnimation(usertext, passtext);
+            startAnimation();
             await wait(animationRunTime);
             lightdm.start_session("xinitrc");
         } else {
@@ -95,7 +84,7 @@ async function initListener() {
             const authenticated = await authenticate(usertext.value.trim(), passtext.value.trim());
             // if password is correct, zoom in on image and start session
             if(authenticated) {
-                startAnimation(usertext, passtext);
+                startAnimation();
                 await wait(animationRunTime);
                 lightdm.start_session("xinitrc");
             } else {

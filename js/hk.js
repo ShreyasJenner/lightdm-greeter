@@ -8,41 +8,18 @@ function startVideo() {
 }
 
 // function to start post authentication animation
-function startAnimation(usertext, passtext) {
-    // hide the input elements
-    usertext.style.display = 'None';
-    passtext.style.display = 'None';
-
+function startAnimation() {
     // hide the titles
-    const hdr1 = document.querySelector('h1');
-    const hdr2 = document.querySelector('h2');
-    hdr1.style.display = 'None';
-    hdr2.style.display = 'None';
+    document.getElementsByClassName('content')[0].style.display = 'none';
 
     // hide the buttons
     const btns = document.querySelectorAll('button');
-    btns.forEach((btn) => {btn.style.display = 'None'});
+    btns.forEach((btn) => {btn.style.display = 'none'});
 
     // start the video 
     startVideo();
 }
-// function to start post authentication animation
-function startAnimation(usertext, passtext) {
-    // hide the input elements
-    usertext.style.display = 'None';
-    passtext.style.display = 'None';
 
-    // hide the titles
-    const hdr1 = document.querySelector('h1');
-    hdr1.style.display = 'None';
-
-    // hide the buttons
-    const btns = document.querySelectorAll('button');
-    btns.forEach((btn) => {btn.style.display = 'None'});
-
-    // start the video 
-    startVideo();
-}
 // function to add event listener to power buttons
 function powerbuttonHandling() {
     // get the power buttons
@@ -91,7 +68,7 @@ async function initListener() {
         const authenticated = await authenticate(usertext.value.trim(), passtext.value.trim());
          // if password is correct, zoom in on image and start session
         if(authenticated) {
-            startAnimation(usertext, passtext);
+            startAnimation();
             await wait(animationRunTime);
             lightdm.start_session("xinitrc");
         } else {
@@ -107,7 +84,7 @@ async function initListener() {
             const authenticated = await authenticate(usertext.value.trim(), passtext.value.trim());
             // if password is correct, zoom in on image and start session
             if(authenticated) {
-                startAnimation(usertext, passtext);
+                startAnimation();
                 await wait(animationRunTime);
                 lightdm.start_session("xinitrc");
             } else {
