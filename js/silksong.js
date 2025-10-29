@@ -21,13 +21,8 @@ function startAnimation(usertext, passtext) {
 }
 // function to start post authentication animation
 function startAnimation(usertext, passtext) {
-    // hide the input elements
-    usertext.style.display = 'None';
-    passtext.style.display = 'None';
-
     // hide the titles
-    const hdr1 = document.querySelector('h1');
-    hdr1.style.display = 'None';
+    document.getElementsByClassName('content')[0].style.display = 'none'
 
     // hide the buttons
     const btns = document.querySelectorAll('button');
