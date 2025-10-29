@@ -5,7 +5,8 @@ window.addEventListener('GreeterReady', function () {
     const theme_list = [
         "../html/lain.html",
         "../html/lily.html", 
-        "../html/hk.html", 
+        "../html/hk.html",
+        "../html/silksong.html"
     ];
     const theme_len = theme_list.length;
 
