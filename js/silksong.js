@@ -3,7 +3,7 @@ const animationRunTime = 2500;
 
 // function to start video
 function startVideo() {
-    video.playbackRate = 2.8;
+    video.playbackRate = 2;
     video.play();
 }
 
