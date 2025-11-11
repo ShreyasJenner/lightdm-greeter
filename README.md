@@ -1,12 +1,13 @@
 # lightdm-greeter
 
-A custom web-greeter theme for lightdm
+A custom web-greeter theme for different greeters 
 
-- The repo implements two different themes
+## Lightdm 
+- The repo implements four different themes
 - The themes are not randomly called
 - They are called based on the module of the current date by the total number of themes
 
-## Theme List
+### Lightdm Theme List
 - Lain
 - Ender Lilies
 - Hollow Knight
